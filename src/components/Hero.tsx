@@ -1,90 +1,99 @@
 import { Button } from "@/components/ui/button";
-import { ArrowDown, Leaf, Truck, Shield } from "lucide-react";
+import { Key, Clock, Truck, Wrench, CreditCard } from "lucide-react";
 
 const Hero = () => {
+  const benefits = [
+    { icon: Clock, text: "Изготовление за 3 дня" },
+    { icon: Truck, text: "Доставка по всей России" },
+    { icon: Wrench, text: "Сборка на участке" },
+    { icon: CreditCard, text: "Минимальная предоплата" },
+  ];
+
   return (
     <section className="relative min-h-screen flex items-center pt-20 overflow-hidden">
-      {/* Background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-forest-light via-background to-secondary" />
-      <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23228b22%22%20fill-opacity%3D%220.03%22%3E%3Cpath%20d%3D%22M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%22%2F%3E%3C%2Fg%3E%3C%2Fg%3E%3C%2Fsvg%3E')] opacity-50" />
+      {/* Nature Background */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920&h=1080&fit=crop')`,
+        }}
+      />
+      {/* Overlay for readability */}
+      <div className="absolute inset-0 bg-gradient-to-r from-background/80 via-background/50 to-transparent" />
+      
+      {/* Decorative leaves */}
+      <div className="absolute top-20 right-10 text-4xl opacity-80 animate-fade-in" style={{ animationDelay: "0.5s" }}>🌿</div>
+      <div className="absolute bottom-40 left-10 text-3xl opacity-70 animate-fade-in" style={{ animationDelay: "0.7s" }}>🍃</div>
+      <div className="absolute top-40 right-1/4 text-2xl opacity-60 animate-fade-in" style={{ animationDelay: "0.9s" }}>🌿</div>
 
       <div className="container mx-auto px-4 relative z-10">
+        {/* Floating Benefits Badges */}
+        <div className="flex flex-wrap justify-center gap-3 mb-8 animate-fade-in">
+          {benefits.map((benefit, index) => (
+            <div
+              key={index}
+              className="flex items-center gap-2 px-4 py-2 bg-card/90 backdrop-blur-sm rounded-full shadow-card border border-border/50 text-sm font-medium text-foreground"
+              style={{ animationDelay: `${index * 0.1}s` }}
+            >
+              <benefit.icon className="w-4 h-4 text-golden" />
+              <span>{benefit.text}</span>
+            </div>
+          ))}
+        </div>
+
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
-          <div className="text-center lg:text-left animate-fade-in">
-            <span className="inline-block px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-medium mb-6">
-              🌲 Производство в России
-            </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-display font-bold text-foreground leading-tight mb-6">
-              Бани-бочки
-              <span className="block text-primary">из натурального дерева</span>
-            </h1>
-            <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl mx-auto lg:mx-0">
-              Производим и доставляем качественные бани-бочки от 2 до 5 метров. 
-              Натуральный кедр и сосна, быстрый нагрев, долговечность.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-              <Button size="lg" asChild className="text-base px-8">
-                <a href="#catalog">Смотреть каталог</a>
-              </Button>
-              <Button size="lg" variant="outline" asChild className="text-base px-8">
-                <a href="#contact">Получить консультацию</a>
-              </Button>
+          <div className="text-center lg:text-left animate-fade-in" style={{ animationDelay: "0.2s" }}>
+            {/* Main Title Card */}
+            <div className="inline-block bg-cream/95 backdrop-blur-sm rounded-2xl p-8 shadow-card mb-8">
+              <p className="text-lg md:text-xl text-muted-foreground mb-2 font-medium">
+                Отделка и строительство
+              </p>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-display font-bold text-wood leading-tight">
+                БАНЬ
+              </h1>
+              
+              {/* "Под ключ" Badge */}
+              <div className="inline-flex items-center gap-2 mt-4 px-5 py-3 bg-gradient-to-r from-golden to-golden-light rounded-full shadow-lg">
+                <Key className="w-5 h-5 text-accent-foreground" />
+                <span className="text-accent-foreground font-semibold">под ключ</span>
+              </div>
             </div>
 
-            {/* Quick Benefits */}
-            <div className="flex flex-wrap gap-6 mt-10 justify-center lg:justify-start">
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Leaf className="w-4 h-4 text-primary" />
-                </div>
-                <span>100% кедр</span>
-              </div>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Truck className="w-4 h-4 text-primary" />
-                </div>
-                <span>Доставка по РФ</span>
-              </div>
-              <div className="flex items-center gap-2 text-sm text-muted-foreground">
-                <div className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center">
-                  <Shield className="w-4 h-4 text-primary" />
-                </div>
-                <span>Гарантия 2 года</span>
-              </div>
-            </div>
+            <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto lg:mx-0">
+              Производим качественные бани-бочки от 2 до 5 метров из натурального кедра и сосны. 
+              Быстрое изготовление, доставка и профессиональная установка по всей России.
+            </p>
           </div>
 
           {/* Hero Image */}
-          <div className="relative animate-fade-in" style={{ animationDelay: "0.2s" }}>
-            <div className="aspect-square lg:aspect-[4/3] rounded-2xl overflow-hidden shadow-card bg-secondary">
+          <div className="relative animate-fade-in" style={{ animationDelay: "0.4s" }}>
+            <div className="relative">
               <img
                 src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?w=800&h=600&fit=crop"
-                alt="Баня-бочка из натурального дерева в лесу"
-                className="w-full h-full object-cover"
+                alt="Баня-бочка из натурального дерева"
+                className="w-full h-auto rounded-2xl shadow-card object-cover"
               />
+              
+              {/* CTA Button overlaying image */}
+              <div className="absolute -bottom-6 right-4 lg:right-8">
+                <Button 
+                  size="lg" 
+                  asChild 
+                  className="text-lg px-8 py-6 bg-gradient-to-r from-golden to-golden-light hover:from-golden-dark hover:to-golden text-accent-foreground font-semibold shadow-lg rounded-full"
+                >
+                  <a href="#contact">Оставить заявку</a>
+                </Button>
+              </div>
             </div>
-            {/* Floating Card */}
-            <div className="absolute -bottom-6 -left-6 bg-card rounded-xl p-4 shadow-card hidden md:block">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full bg-primary flex items-center justify-center">
-                  <span className="text-primary-foreground font-display font-bold">200+</span>
-                </div>
-                <div>
-                  <p className="font-semibold text-foreground">Довольных клиентов</p>
-                  <p className="text-sm text-muted-foreground">за 2024 год</p>
-                </div>
+            
+            {/* Decorative wooden tub element */}
+            <div className="absolute -bottom-4 -left-4 lg:-left-8 hidden md:block">
+              <div className="w-24 h-24 bg-wood-light rounded-full flex items-center justify-center shadow-card border-4 border-wood/30">
+                <span className="text-3xl">🪣</span>
               </div>
             </div>
           </div>
-        </div>
-
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 hidden lg:block animate-bounce">
-          <a href="#catalog" className="flex flex-col items-center text-muted-foreground hover:text-primary transition-colors">
-            <span className="text-sm mb-2">Листайте вниз</span>
-            <ArrowDown className="w-5 h-5" />
-          </a>
         </div>
       </div>
     </section>

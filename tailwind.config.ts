@@ -60,6 +60,11 @@ export default {
           light: "hsl(var(--forest-light))",
         },
         cream: "hsl(var(--cream))",
+        golden: {
+          DEFAULT: "hsl(var(--golden))",
+          light: "hsl(var(--golden-light))",
+          dark: "hsl(var(--golden-dark))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
